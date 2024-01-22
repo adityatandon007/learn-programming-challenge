@@ -1,5 +1,10 @@
 <template>
   <div class="row">
+    <div class="col-12 is-center">
+      <h2>Solve {{ problem.title }}</h2>
+    </div>
+  </div>
+  <div class="row">
     <div class="problem-description col-12 col-6-md">
       <ProblemDescription :problem="problem" />
     </div>
