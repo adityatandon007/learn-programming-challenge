@@ -135,15 +135,19 @@ export default defineComponent({
     const loadScript = (scriptPath) => {
       return new Promise(function (resolve, reject) {
         let tag = document.head.querySelector(`[src="${scriptPath}"`);
-        tag = document.createElement("script");
-        tag.src = scriptPath;
-        document.head.appendChild(tag);
-        tag.onload = () => {
+        if (tag) {
           resolve(tag);
-        };
-        tag.onerror = () => {
-          reject(new Error("Failed to load " + scriptPath));
-        };
+        } else {
+          tag = document.createElement("script");
+          tag.src = scriptPath;
+          document.head.appendChild(tag);
+          tag.onload = () => {
+            resolve(tag);
+          };
+          tag.onerror = () => {
+            reject(new Error("Failed to load " + scriptPath));
+          };
+        }
       });
     };
     const scriptsToLoad = [
