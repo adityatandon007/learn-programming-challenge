@@ -17,6 +17,7 @@
   <div class="action-wrapper is-center">
     <button class="button primary" @click="submitCode">Submit Code</button>
   </div>
+  <div class="is-center text-error" v-if="error">Execute your code first</div>
 </template>
 
 <script>
@@ -44,6 +45,7 @@ export default defineComponent({
     let socketClient = ref(null);
     let token = ref("");
     let wsNextId = ref(0);
+    let error = ref(false);
     const router = useRouter();
     const route = useRoute();
     const wsConnectionFailed = (e) => {
@@ -113,10 +115,17 @@ export default defineComponent({
     };
 
     const submitCode = () => {
-      router.push({
-        name: "home",
-        query: { submitted: route.params.id },
-      });
+      if (output.value) {
+        router.push({
+          name: "home",
+          query: { submitted: route.params.id },
+        });
+      } else {
+        error.value = true;
+        setTimeout(() => {
+          error.value = false;
+        }, 1000);
+      }
     };
 
     return {
@@ -125,6 +134,7 @@ export default defineComponent({
       compileCode,
       submitCode,
       output,
+      error,
       executionTime,
       socketClient,
       wsConnection,
