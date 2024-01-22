@@ -6,8 +6,8 @@ Fun challenges to learn programming interactively. Uses Jdoodle api for executio
 
 ```
 # open terminal
-cd client
-yarn install 
+cd my-client
+yarn install
 yarn serve
 
 # open another terminal
