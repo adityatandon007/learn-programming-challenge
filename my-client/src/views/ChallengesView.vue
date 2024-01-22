@@ -1,6 +1,7 @@
 <template>
   <div class="challenges-container">
     <h2 class="is-center">Challenges</h2>
+    <p class="is-center">Learn Javascript by solving challenges</p>
     <ConfettiExplosion v-if="completed == 100" :particleCount="350" />
     <ProgressBar :bgcolor="'#6a1b9a'" :completed="completed" />
     <div class="row">

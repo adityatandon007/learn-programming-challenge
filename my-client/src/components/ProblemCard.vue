@@ -32,5 +32,10 @@ export default defineComponent({
 .problem-wrapper {
   width: 320px;
   max-width: 100%;
+  transition: 0.5s;
+}
+
+.problem-wrapper:hover {
+  box-shadow: 0 0 4px #28bd14;
 }
 </style>
