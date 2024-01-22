@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="challenges-container">
     <h2 class="is-center">Challenges</h2>
+    <ConfettiExplosion v-if="completed == 100" :particleCount="350" />
     <ProgressBar :bgcolor="'#6a1b9a'" :completed="completed" />
     <div class="row">
       <ProblemCard
@@ -19,11 +20,13 @@ import ProgressBar from "@/components/ProgressBar.vue";
 import { problems } from "@/mocks/problems";
 import { defineComponent, reactive, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import ConfettiExplosion from "vue-confetti-explosion";
 
 export default defineComponent({
   components: {
     ProblemCard,
     ProgressBar,
+    ConfettiExplosion,
   },
   setup() {
     let problemsList = reactive(problems);
